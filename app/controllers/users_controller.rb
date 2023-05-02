@@ -7,7 +7,8 @@ before_action :set_user, only: %w(show edit update destroy)
     def create
       @user = User.new(user_params)
       if @user.save
-        redirect_to tasks_path
+        log_in(@user)
+        redirect_to tasks_path, notice: 'アカウントを登録しました'
       else
         render :new
       end
@@ -22,7 +23,15 @@ before_action :set_user, only: %w(show edit update destroy)
 
     def update
       if @user.update(user_params)
-        redirect_to @user
+        redirect_to @user, notice: 'アカウントを更新しました'
+
+
+
+
+
+
+
+
       else
         render :edit
       end
